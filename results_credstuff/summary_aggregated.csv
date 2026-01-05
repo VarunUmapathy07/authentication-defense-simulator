@@ -1,0 +1,15 @@
+defense,param_name,param_value,attacker_model,n_trials,mean_compromise_rate,std_compromise_rate,mean_block_rate,std_block_rate,mean_impacted_pct,std_impacted_pct
+lockout,max_failures,3,cred_stuffing,3,0.0,0.0,0.9449195997632677,0.00031338914393193887,1.0,0.0
+lockout,max_failures,5,cred_stuffing,3,0.0,0.0,0.679377847579334,0.011352562856717348,1.0,0.0
+lockout,max_failures,10,cred_stuffing,3,0.016666666666666666,0.0,0.01892147587511826,0.0,0.02,0.0
+backoff,base_delay,0.25,cred_stuffing,3,0.016666666666666666,0.0,0.3796519856797935,0.0,1.0,0.0
+backoff,base_delay,0.5,cred_stuffing,3,0.0,0.0,0.3793706293706294,0.0,1.0,0.0
+backoff,base_delay,1.0,cred_stuffing,3,0.0,0.0,0.3786626249176182,0.00021694606713586477,1.0,0.0
+backoff,base_delay,2.0,cred_stuffing,3,0.0,0.0,0.37841211717709716,0.0,1.0,0.0
+rate_limit,tokens,2_0.3,cred_stuffing,3,0.0,0.0,0.37793310034947575,0.0,1.0,0.0
+rate_limit,tokens,3_0.5,cred_stuffing,3,0.0,0.0,0.18556044465030105,0.0,1.0,0.0
+rate_limit,tokens,5_0.5,cred_stuffing,3,0.0,0.0,0.10072776155379409,0.0,1.0,0.0
+rate_limit,tokens,5_1.0,cred_stuffing,3,0.016666666666666666,0.0,0.10072309261147677,0.0,1.0,0.0
+rate_limit_ip,tokens,3_0.5,cred_stuffing,3,0.016666666666666666,0.0,0.24270383457662606,0.0,1.0,0.0
+rate_limit_ip,tokens,5_1.0,cred_stuffing,3,0.016666666666666666,0.0,0.13991429604006403,0.0,1.0,0.0
+rate_limit_ip,tokens,10_2.0,cred_stuffing,3,0.016666666666666666,0.0,0.023919308357348703,0.0,0.3,0.0

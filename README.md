@@ -1,0 +1,22 @@
+Authentication Defense Simulator
+This repository contains a simple Python simulator I created to model and study a common login security problem — repeated password-guess attempts against user accounts. The simulator models both attackers and regular users over simulated time; I apply different defense strategies (lockout, rate limiting, and backoff) to see how the system’s security and usability change under the same workload.
+
+The goal is not to replicate the Internet perfectly. Instead, this is a repeatable test setup that makes it easier to compare defenses under controlled conditions. The simulation includes two attacker types targeting a single victim account. The first attacker type represents a single-source brute-force attack that tries passwords at a moderate rate from a single IP address. The second attacker type represents a distributed low-rate botnet where many different IPs each make a small number of guesses at a slow rate. This is important because while some defense strategies work well against attacks originating from a single IP, they do not perform well when attempts are split across many different IPs.
+
+I also model normal users, so usability effects show up in the results. Users attempt logins on a schedule, occasionally mistype their password, and will retry after failures. A shared-IP group is included in the simulator to represent NAT-type environments (i.e., a campus network or home network), where many users appear to originate from the same public IP address. This illustrates how IP-based defenses can inadvertently block innocent users on shared networks.
+
+I implemented five defense strategies. Four of them (lockout, account-based rate limiting, IP-based rate limiting, and exponential backoff) are evaluated in the parameter sweep; a hybrid policy is implemented but not included in the sweep plots in this version. A lockout blocks an account after a certain number of consecutive failed attempts, usually for a fixed time window. Account-based rate limiting slows down attempts against a specific account regardless of the source IP. Source-IP-based rate limiting slows down attempts from a single IP address. Exponential backoff increases the wait time after each failure, making repeated guessing more expensive over time. The hybrid policy uses both account-based and IP-based logic to determine whether access should be allowed or denied. It relies heavily on the stringency level defined for its threshold values.
+
+To determine how effective each defender strategy is, one primary security metric was used, and two usability metrics were used. The security metric is the percentage of trials in which the victim account was compromised. The usability metrics are the fraction of normal-user login attempts blocked and the fraction of unique users blocked at least once during a trial. Both usability metrics provide value since a defender strategy could have a low block rate and still negatively impact many unique users.
+
+To replicate the experiments, run the comparison script to generate results for all defender strategies, then analyze each defense folder to generate the plots. The simulator writes the raw event logs and summary outputs to the output directory for each defender strategy. The plotting script generates security–usability frontier plots for both the baseline guessing attacker and a credential-stuffing attacker model. These plots show how different defenses trade off attacker success against user blocking, where points closer to the lower-left corner represent better overall behavior., where the area in the lower-left corner represents the optimal defender strategy (the lowest attacker success rate and the lowest user block rate).
+
+Quick start
+Install Python 3 and matplotlib, then run a small demo to confirm the simulator is working. python demo.py To run a complete comparison across defenses: python compare_defenses.py After it finishes, analyze each defense folder: python analyze.py comparison/lockout python analyze.py comparison/rate_limit python analyze.py comparison/backoff python analyze.py comparison/rate_limit_ip python analyze.py comparison/hybrid Then generate charts: python make_charts.py comparison Outputs are saved under comparison/charts/ as attacker_success.png, user_blocks.png, and tradeoff.png.
+
+Report
+PDF (direct download): 
+
+Notes
+The repository ignores local virtual environments and generated output folders (results/comparison/charts) to keep commits clean and reproducible across machines.
+
