@@ -15,7 +15,7 @@ To replicate the experiments, run the comparison script to generate results for 
 Install Python 3 and matplotlib, then run a small demo to confirm the simulator is working. python demo.py To run a complete comparison across defenses: python compare_defenses.py After it finishes, analyze each defense folder: python analyze.py comparison/lockout python analyze.py comparison/rate_limit python analyze.py comparison/backoff python analyze.py comparison/rate_limit_ip python analyze.py comparison/hybrid Then generate charts: python make_charts.py comparison Outputs are saved under comparison/charts/ as attacker_success.png, user_blocks.png, and tradeoff.png.
 
 ## Report ## 
-PDF (direct download): https://github.com/VarunUmapathy07/authentication-defense-simulator/releases/download/Report/Authentication.Defence.Simulator.Measuring.Security.VS.Usability.for.Basic.Login.Defences.2.pdf
+PDF (direct download): https://github.com/VarunUmapathy07/authentication-defense-simulator/releases/download/report-jan-2026/Authentication_Defense_Simulator_Report_Jan_2026.pdf
 
 ## Notes ##
 The repository ignores local virtual environments and generated output folders (results/comparison/charts) to keep commits clean and reproducible across machines.
